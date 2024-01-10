@@ -3,10 +3,10 @@
 {% block title %}Hello MovieController!{% endblock %}
 
 {% block body %}
-
-{% for movie in movies %}
-    <h2>{{ movie.name }}</h2>
-
-{% endfor %}
+    <div class='row text-center'>
+        {% for movie in movies %}
+            {% include "partials/movie/movie_block.html.twig" %}
+        {% endfor %}
+    </div>
 
 {% endblock %}

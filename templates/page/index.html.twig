@@ -3,5 +3,11 @@
 {% block title %}Moviz !{% endblock %}
 
 {% block body %}
-Bieng ou bieng 
+
+    <h2>Les derniers films ajoutés</h2>
+    <div class='row text-center'>
+        {% for movie in movies %}
+            {% include "partials/movie/movie_block.html.twig" %}
+        {% endfor %}
+    </div>
 {% endblock %}
