@@ -31,6 +31,12 @@ class Movie
     #[ORM\ManyToMany(targetEntity: genre::class, inversedBy: 'movies')]
     private Collection $genres;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $synopsis = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $duration = null;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
@@ -146,6 +152,30 @@ class Movie
     public function removeGenre(genre $genre): static
     {
         $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function getSynopsis(): ?string
+    {
+        return $this->synopsis;
+    }
+
+    public function setSynopsis(?string $synopsis): static
+    {
+        $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    public function getDuration(): ?\DateTimeInterface
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?\DateTimeInterface $duration): static
+    {
+        $this->duration = $duration;
 
         return $this;
     }
