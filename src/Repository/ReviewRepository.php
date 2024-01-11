@@ -45,4 +45,14 @@ class ReviewRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function getAverageRateByMovieId($movieId): float|null
+   {
+        return $this->createQueryBuilder('r')
+            ->select('AVG(r.rate) as averageRate')
+            ->where('r.movie = :movieId')
+            ->setParameter('movieId', $movieId)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }
